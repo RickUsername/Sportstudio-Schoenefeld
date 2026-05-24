@@ -613,35 +613,94 @@
 
     #galerie { background: var(--blush); padding: 4rem 0; }
     #galerie h2 { color: var(--walnut); }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-auto-rows: 140px;
-      gap: 0.6rem;
-      margin-top: 0.75rem;
-    }
-    @media (max-width: 720px) {
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 120px; }
-    }
-    .gallery-item {
+    .carousel {
       position: relative;
+      margin-top: 1rem;
+      border-radius: 14px;
       overflow: hidden;
-      border-radius: 12px;
-      background: var(--cream-dk);
-      cursor: zoom-in;
       box-shadow: var(--shadow);
+      background: var(--cream-dk);
     }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-    .gallery-item:hover img { transform: scale(1.06); }
-    .g-a { grid-column: span 3; grid-row: span 2; }
-    .g-b { grid-column: span 3; grid-row: span 1; }
-    .g-c { grid-column: span 3; grid-row: span 1; }
-    .g-d { grid-column: span 6; grid-row: span 2; }
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      aspect-ratio: 16 / 10;
+      background: var(--cream-dk);
+      position: relative;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: zoom-in;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.88);
+      color: var(--walnut);
+      border: none;
+      font-size: 1.9rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+      transition: background 0.15s, transform 0.15s;
+      user-select: none;
+      font-family: inherit;
+      padding: 0;
+    }
+    .carousel-btn:hover { background: rgba(255,255,255,1); transform: translateY(-50%) scale(1.07); }
+    .carousel-prev { left: 0.85rem; }
+    .carousel-next { right: 0.85rem; }
     @media (max-width: 720px) {
-      .g-a { grid-column: span 2; grid-row: span 2; }
-      .g-b { grid-column: span 1; grid-row: span 1; }
-      .g-c { grid-column: span 1; grid-row: span 1; }
-      .g-d { grid-column: span 2; grid-row: span 2; }
+      .carousel-btn { width: 38px; height: 38px; font-size: 1.55rem; }
+      .carousel-slide { aspect-ratio: 4 / 3; }
+    }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.55rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .carousel-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 1px solid rgba(0,0,0,0.18);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active {
+      background: var(--terracotta);
+      transform: scale(1.25);
+    }
+    .carousel-hint {
+      text-align: center;
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--walnut);
+      opacity: 0.7;
     }
 
     #oeffnungszeiten { background: var(--cream-dk); }
@@ -1054,20 +1113,32 @@
       <span class="section-label">Einblicke</span>
       <h2>Die Sportstätte in Bildern</h2>
       <hr class="divider" />
-      <div class="gallery-grid">
-        <div class="gallery-item g-a" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.32.jpeg','Heller Kursraum mit Holzfußboden')">
-          <img src="WhatsApp Image 2026-04-28 at 10.57.32.jpeg" alt="Heller Kursraum mit Holzfußboden" />
+      <div class="carousel" id="galerie-carousel">
+        <button class="carousel-btn carousel-prev" type="button" aria-label="Vorheriges Bild">&#x2039;</button>
+        <div class="carousel-track" id="galerie-track">
+          <div class="carousel-slide">
+            <img src="WhatsApp Image 2026-04-28 at 10.57.32.jpeg" alt="Heller Kursraum mit Holzfußboden" loading="lazy" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.32.jpeg','Heller Kursraum mit Holzfußboden')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="IMG20260224193525.jpg" alt="Blick über das Sportstudio mit Geräten und Mezzanine" loading="lazy" onclick="openLightbox('IMG20260224193525.jpg','Blick über das Sportstudio mit Geräten und Mezzanine')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="WhatsApp Image 2026-04-28 at 10.57.31.jpeg" alt="Fitnessbereich mit Geräten" loading="lazy" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.31.jpeg','Fitnessbereich mit Geräten')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="IMG20260224193512.jpg" alt="Empfangsbereich mit Blick in den Trainingsraum" loading="lazy" onclick="openLightbox('IMG20260224193512.jpg','Empfangsbereich mit Blick in den Trainingsraum')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="WhatsApp Image 2026-04-28 at 10.57.33.jpeg" alt="Sportstätte Schönefeld" loading="lazy" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.33.jpeg','Sportstätte Schönefeld')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="WhatsApp Image 2026-04-28 at 10.57.34.jpeg" alt="Sportstätte Schönefeld" loading="lazy" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.34.jpeg','Sportstätte Schönefeld')" />
+          </div>
         </div>
-        <div class="gallery-item g-b" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.31.jpeg','Fitnessbereich mit Geräten')">
-          <img src="WhatsApp Image 2026-04-28 at 10.57.31.jpeg" alt="Fitnessbereich mit Geräten" />
-        </div>
-        <div class="gallery-item g-c" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.33.jpeg','Sportstätte Schönefeld')">
-          <img src="WhatsApp Image 2026-04-28 at 10.57.33.jpeg" alt="Sportstätte Schönefeld" />
-        </div>
-        <div class="gallery-item g-d" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.34.jpeg','Sportstätte Schönefeld')">
-          <img src="WhatsApp Image 2026-04-28 at 10.57.34.jpeg" alt="Sportstätte Schönefeld" />
-        </div>
+        <button class="carousel-btn carousel-next" type="button" aria-label="Nächstes Bild">&#x203A;</button>
       </div>
+      <div class="carousel-dots" id="galerie-dots" role="tablist" aria-label="Galerie-Navigation"></div>
+      <p class="carousel-hint">Wischen oder Pfeile nutzen · Bild antippen zum Vergrößern</p>
     </div>
   </section>
 
@@ -1155,6 +1226,59 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeLightbox();
     });
+
+    (function initCarousel() {
+      var track = document.getElementById('galerie-track');
+      var dotsContainer = document.getElementById('galerie-dots');
+      var carousel = document.getElementById('galerie-carousel');
+      if (!track || !dotsContainer || !carousel) return;
+      var slides = track.querySelectorAll('.carousel-slide');
+      var prevBtn = carousel.querySelector('.carousel-prev');
+      var nextBtn = carousel.querySelector('.carousel-next');
+
+      // Build dots
+      var dots = [];
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.type = 'button';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Zu Bild ' + (i + 1));
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      });
+
+      function currentIndex() {
+        var w = track.clientWidth;
+        if (w === 0) return 0;
+        return Math.round(track.scrollLeft / w);
+      }
+      function goTo(i) {
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+      }
+      function updateDots() {
+        var idx = currentIndex();
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+      }
+
+      prevBtn.addEventListener('click', function() { goTo(currentIndex() - 1); });
+      nextBtn.addEventListener('click', function() { goTo(currentIndex() + 1); });
+
+      var scrollTimer;
+      track.addEventListener('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(updateDots, 60);
+      });
+
+      // Keyboard navigation when carousel is focused
+      carousel.setAttribute('tabindex', '0');
+      carousel.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(currentIndex() - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
+      });
+    })();
 
     function copyEmail() {
       const email = 'leostrasseLEschoenefeld@web.de';
