@@ -12,3 +12,7 @@ Desktop.ini
 
 # Logs
 *.log
+
+# Internal context (not for public repo)
+kontext/
+/og-image-*.jpg

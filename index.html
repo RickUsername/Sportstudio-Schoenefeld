@@ -781,6 +781,34 @@
       transition: all 0.2s;
     }
     .maps-link:hover { background: var(--terracotta); color: var(--paper); text-decoration: none; }
+    .info-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: var(--cream);
+      border-left: 4px solid var(--terracotta);
+      padding: 0.85rem 1.1rem;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--walnut);
+      line-height: 1.45;
+    }
+    .info-pill-icon {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
 
     #kontakt {
       background:
@@ -913,6 +941,20 @@
       <h2>Neuigkeiten</h2>
       <hr class="divider" />
       <div class="news-grid">
+        <div class="news-card">
+          <img src="IMG20260224193525.jpg" alt="Innenraum der Sportstätte Schönefeld" class="news-card-img" />
+          <div class="news-card-body">
+            <div class="news-date">28. – 30. Mai 2026</div>
+            <h3>Trefft uns am Wasserfest in Thekla – Crowdfunding-Start!</h3>
+            <p>
+              Vom 28. bis 30. Mai sind wir mit einem eigenen Stand auf dem traditionellen
+              <strong>Wasserfest am Bagger Thekla</strong>. Kommt vorbei, lernt uns kennen
+              und erfahrt aus erster Hand, wie es mit der Sportstätte weitergeht. Gleichzeitig
+              starten wir dort unsere <strong>Crowdfunding-Kampagne</strong> – jede Unterstützung
+              hilft, das Studio als Genossenschaft auf solide Beine zu stellen.
+            </p>
+          </div>
+        </div>
         <div class="news-card">
           <img src="Wegbeschreibung.png" alt="Karte der Sportstätte Schönefeld" class="news-card-img" />
           <div class="news-card-body">
@@ -1200,6 +1242,10 @@
             <h3>Sportstätte Schönefeld</h3>
             <p class="address-main">Leostraße 4<br />04347 Leipzig – Schönefeld</p>
             <a href="https://www.google.com/maps/search/?api=1&query=Leostraße+4,+04347+Leipzig" target="_blank" rel="noopener" class="maps-link">In Google Maps öffnen →</a>
+            <div class="info-pill">
+              <span class="info-pill-icon" aria-hidden="true">P</span>
+              <span><strong>Eigener kostenfreier Parkplatz</strong> direkt am Studio</span>
+            </div>
             <img src="Wegbeschreibung.png" alt="Karte mit Wegbeschreibung zur Sportstätte Schönefeld" style="width:100%; border-radius:10px; margin-top:0.5rem; display:block;" />
           </div>
         </div>
