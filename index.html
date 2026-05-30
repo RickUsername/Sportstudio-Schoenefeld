@@ -498,6 +498,84 @@
     .share-sub { font-size: 0.9rem; color: rgba(248, 241, 230, 0.7); }
     .geno-note { font-size: 0.83rem; color: rgba(248, 241, 230, 0.55); font-style: italic; margin-top: 0.5rem; margin-bottom: 0; }
 
+    /* Genossenschaft – Stufen / Anteile */
+    .geno-tiers-head { margin-top: 4.5rem; max-width: 680px; }
+    .geno-tiers-head h3 { color: var(--paper); font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 3.2vw, 2rem); margin-bottom: 0.6rem; }
+    .geno-tiers {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    @media (min-width: 820px) { .geno-tiers { grid-template-columns: repeat(3, 1fr); align-items: stretch; } }
+    .tier-card {
+      background: rgba(255, 250, 242, 0.06);
+      border: 1px solid rgba(248, 241, 230, 0.18);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .tier-card.featured {
+      border-color: var(--terracotta-lt);
+      background: rgba(217, 122, 85, 0.10);
+      box-shadow: 0 16px 50px rgba(184, 84, 54, 0.28);
+    }
+    .tier-badge {
+      position: absolute;
+      top: -0.8rem;
+      left: 1.75rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--walnut);
+      background: var(--terracotta-lt);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+    }
+    .tier-name { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: var(--paper); margin-bottom: 0.35rem; }
+    .tier-price { font-family: 'Fraunces', serif; font-size: 2.3rem; font-weight: 700; color: var(--terracotta-lt); line-height: 1; margin-bottom: 0.9rem; }
+    .tier-price span { font-family: 'Nunito', sans-serif; font-size: 0.88rem; font-weight: 600; color: rgba(248, 241, 230, 0.6); }
+    .tier-for { font-size: 0.92rem; color: rgba(248, 241, 230, 0.78); margin-bottom: 1.4rem; }
+    .tier-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-top: auto; }
+    .tier-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: rgba(248, 241, 230, 0.9);
+    }
+    .tier-list li::before { content: '✓'; color: var(--terracotta-lt); font-weight: 800; flex-shrink: 0; }
+    .tier-list li.inherit { color: var(--terracotta-lt); font-weight: 700; }
+    .tier-list li.inherit::before { content: '+'; }
+
+    .geno-faq { margin-top: 4.5rem; max-width: 820px; }
+    .geno-faq h3 { color: var(--paper); font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 3.2vw, 2rem); margin-bottom: 1.5rem; }
+    .faq-item { border-top: 1px solid rgba(248, 241, 230, 0.16); }
+    .faq-item:last-child { border-bottom: 1px solid rgba(248, 241, 230, 0.16); }
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 1.15rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--paper);
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-size: 1.5rem; line-height: 1; color: var(--terracotta-lt); flex-shrink: 0; }
+    .faq-item[open] summary::after { content: '–'; }
+    .faq-item p { margin: 0 0 1.2rem; color: rgba(248, 241, 230, 0.78); font-size: 0.97rem; }
+    .geno-disclaimer { margin-top: 3rem; font-size: 0.85rem; color: rgba(248, 241, 230, 0.5); font-style: italic; max-width: 820px; }
+
     #anlage { background: var(--cream); position: relative; overflow: hidden; }
     #anlage::before {
       content: '';
@@ -651,16 +729,16 @@
     }
     .carousel-track {
       display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+      will-change: transform;
+      transform: translateX(0);
+      transition: transform 0.35s ease;
+      touch-action: pan-y;
       scrollbar-width: none;
     }
     .carousel-track::-webkit-scrollbar { display: none; }
     .carousel-slide {
       flex: 0 0 100%;
-      scroll-snap-align: center;
       aspect-ratio: 16 / 10;
       background: var(--cream-dk);
       position: relative;
@@ -848,8 +926,65 @@
       color: var(--terracotta-lt);
     }
 
-    footer { background: #2a2018; padding: 2.5rem 1.25rem; text-align: center; }
+    /* Impressum als Hinweisbox (Modal) */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 32, 24, 0.78);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      position: relative;
+      background: var(--paper);
+      color: var(--walnut);
+      max-width: 440px;
+      width: 100%;
+      border-radius: 14px;
+      padding: 2.25rem 2rem 2rem;
+      box-shadow: var(--shadow-lg);
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    .modal-box h3 { font-family: 'Fraunces', serif; color: var(--walnut); font-size: 1.5rem; margin-bottom: 1.25rem; }
+    .modal-box p { color: var(--walnut-soft); font-size: 0.95rem; margin-bottom: 0.9rem; line-height: 1.6; }
+    .modal-box strong { color: var(--walnut); font-weight: 700; }
+    .modal-box a { color: var(--terracotta); }
+    .modal-close {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0.25rem;
+      transition: color 0.15s;
+    }
+    .modal-close:hover { color: var(--walnut); }
+    .impressum-note {
+      font-size: 0.83rem;
+      font-style: italic;
+      color: var(--muted);
+      border-top: 1px solid rgba(58, 45, 36, 0.12);
+      padding-top: 1rem;
+      margin-top: 1.25rem;
+      margin-bottom: 0;
+    }
+
+    footer { background: #2a2018; padding: 2.5rem 1.25rem; text-align: center; border-top: 1px solid rgba(248, 241, 230, 0.08); }
     .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 0.85rem; }
+    .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: rgba(248, 241, 230, 0.6); font-size: 0.85rem; font-weight: 600; }
+    .footer-links a:hover { color: var(--terracotta-lt); text-decoration: none; }
     .footer-logo img { height: 50px; width: auto; opacity: 0.9; }
     .footer-text { color: rgba(248, 241, 230, 0.42); font-size: 0.85rem; }
     .footer-text.tag {
@@ -886,6 +1021,34 @@
       transition: opacity 0.15s;
     }
     #lightbox-close:hover { opacity: 1; }
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--paper);
+      border: none;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: background 0.15s;
+      font-family: inherit;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lightbox-nav:hover { background: rgba(255, 255, 255, 0.28); }
+    #lightbox-prev { left: 0.75rem; }
+    #lightbox-next { right: 0.75rem; }
+    @media (max-width: 720px) {
+      .lightbox-nav { width: 40px; height: 40px; font-size: 1.7rem; background: rgba(255, 255, 255, 0.2); }
+    }
 
     @media (max-width: 720px) {
       .nav-links { display: none; }
@@ -1056,36 +1219,149 @@
       <div class="geno-grid">
         <div>
           <p>
-            Eine Genossenschaft bedeutet: Wer mitmacht, ist Eigentümer und Mitglied
-            zugleich. Es gibt viele langjährige, wirtschaftlich erfolgreiche Genossenschaften –
-            das Modell funktioniert, weil viele gemeinsam tragen, was einer allein nicht stemmen kann.
+            Eine Genossenschaft gehört den Menschen, die sie tragen. Wer einen Anteil
+            zeichnet, ist nicht nur Kunde, sondern Miteigentümer – mit einer Stimme,
+            wenn es um das Studio geht. Es gibt keinen Investor, der Gewinn herauszieht:
+            Was übrig bleibt, fließt zurück ins Studio oder als Dividende an die Mitglieder.
           </p>
           <p>
-            Unser Ziel ist es, den Sportbetrieb so schnell wie möglich wieder aufzunehmen
-            und dann Schritt für Schritt die notwendigen Sanierungsmaßnahmen anzugehen –
-            diesmal auf solider, gemeinschaftlicher Basis.
+            Das Modell ist erprobt. Vom Wohnungsbau bis zur Bäckerei tragen in
+            Deutschland seit über hundert Jahren unzählige Genossenschaften, was
+            Einzelne allein nicht stemmen könnten. Genau darauf wollen wir das
+            Sportstudio stellen – und so Schritt für Schritt wieder öffnen und sanieren.
           </p>
           <ol class="geno-steps">
             <li>Genossenschaft gründen – Termin und Ort folgen in Kürze</li>
-            <li>Crowdfunding-Kampagne starten, um Anlaufphase zu finanzieren</li>
+            <li>Crowdfunding-Kampagne starten, um die Anlaufphase zu finanzieren</li>
             <li>Sportbetrieb so schnell wie möglich wieder aufnehmen</li>
-            <li>Schritt für Schritt sanieren und Kursangebot ausbauen</li>
+            <li>Schritt für Schritt sanieren und das Kursangebot ausbauen</li>
           </ol>
         </div>
         <div class="geno-cta">
-          <h3>Mitmachen & einsteigen</h3>
-          <p style="margin-bottom:0.5rem;"><strong style="color:var(--paper);">Als Genossenschaftsmitglied:</strong></p>
-          <span class="share-price">ab 100 €</span>
-          <span class="share-sub">pro Anteil — mehrere Anteile möglich</span>
-          <p class="geno-note">Ob mehrere Anteile mehr Stimmrecht bedeuten, wird im Rahmen der Gründung noch geregelt.</p>
-          <p style="margin-top:1.75rem; margin-bottom:0.5rem;"><strong style="color:var(--paper);">Als reguläres Sportmitglied:</strong></p>
+          <h3>Mitmachen</h3>
+          <p style="margin-bottom:1rem;">
+            Es gibt drei Stufen – vom einzelnen Anteil bis zum Förder-Paket. Du
+            entscheidest, wie stark du einsteigst. Aufstocken kannst du später jederzeit.
+          </p>
+          <span class="share-price">ab 300 €</span>
+          <span class="share-sub">für einen Anteil · 1 Anteil = 1 Stimme</span>
+          <p class="geno-note">Mehr Anteile geben mehr Gewicht in der Generalversammlung – bis maximal drei Stimmen.</p>
+          <p style="margin-top:1.75rem; margin-bottom:0.5rem;"><strong style="color:var(--paper);">Lieber ohne Anteil?</strong></p>
           <p style="margin-bottom:0;">
-            Wer keinen Genossenschaftsanteil erwerben möchte, kann auch einfach normales
-            Sportmitglied werden – mit regulärem Mitgliedsbeitrag. Details folgen bei Eröffnung.
+            Kein Muss: Du kannst auch ganz normales Sportmitglied werden, mit regulärem
+            Monatsbeitrag und ohne Anteil. Die meisten Genossen-Vorteile gibt es dann
+            aber nicht.
           </p>
           <a href="#kontakt" class="btn btn-primary" style="display:flex; justify-content:center; margin-top:1.75rem;">Interesse bekunden</a>
         </div>
       </div>
+
+      <div class="geno-tiers-head">
+        <h3>Drei Stufen – du entscheidest</h3>
+        <p>So sieht das geplante Modell aus. Die genauen Konditionen beschließen die Mitglieder gemeinsam auf der Gründungsversammlung – das hier ist der aktuelle Stand.</p>
+      </div>
+      <div class="geno-tiers">
+        <div class="tier-card featured">
+          <span class="tier-badge">Beliebt</span>
+          <span class="tier-name">Basis</span>
+          <div class="tier-price">300 €<span> · 1 Anteil</span></div>
+          <p class="tier-for">Für alle, die mitbestimmen und das Studio solidarisch mittragen wollen.</p>
+          <ul class="tier-list">
+            <li>1 Stimme in der Generalversammlung</li>
+            <li>Keine einmalige Aufnahmegebühr (80 € gespart)</li>
+            <li>Kurse 12 Stunden früher buchen</li>
+            <li>2 Premium-Gästekarten pro Jahr</li>
+            <li>Wasser-Flatrate beim Training</li>
+            <li>Anteil an der Dividende</li>
+            <li>Anteil wird bei Austritt zurückgezahlt</li>
+          </ul>
+        </div>
+        <div class="tier-card">
+          <span class="tier-name">Plus</span>
+          <div class="tier-price">900 €<span> · 3 Anteile</span></div>
+          <p class="tier-for">Für alle, die regelmäßig trainieren.</p>
+          <ul class="tier-list">
+            <li class="inherit">Alle Vorteile aus Basis</li>
+            <li>2 Stimmen in der Generalversammlung</li>
+            <li>Vergünstigter Monatsbeitrag (58 € statt 60 €)</li>
+            <li>5 Premium-Gästekarten pro Jahr</li>
+            <li>1 Personal-Training-Stunde gratis zum Geburtstag</li>
+          </ul>
+        </div>
+        <div class="tier-card">
+          <span class="tier-name">Förderer</span>
+          <div class="tier-price">3.000 €<span> · 10 Anteile</span></div>
+          <p class="tier-for">Für Intensivnutzer und alle, die das Studio besonders stärken wollen.</p>
+          <ul class="tier-list">
+            <li class="inherit">Alle Vorteile aus Plus</li>
+            <li>3 Stimmen – das Maximum</li>
+            <li>10 Premium-Gästekarten pro Jahr</li>
+            <li>1 beitragsfreier Monat pro Jahr</li>
+            <li>1 Fitnesstest pro Jahr gratis</li>
+            <li>20 % Rabatt auf Personal Training & im Studio-Shop</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="geno-faq">
+        <h3>Häufige Fragen</h3>
+        <details class="faq-item" open>
+          <summary>Bekomme ich meinen Anteil wieder zurück?</summary>
+          <p>
+            Ja. Wenn du kündigst, wird dir dein Anteil zurückgezahlt – frühestens
+            12, spätestens 24 Monate nach Feststellung des Jahresabschlusses. Ein
+            bisschen wie ein Sparbuch, nur dass du in der Zwischenzeit mitbestimmst
+            und die Vorteile genießt.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Muss ich Studiomitglied sein, um Genosse zu werden?</summary>
+          <p>
+            Nein. Du kannst auch nur Anteile zeichnen, um das Studio zu unterstützen.
+            Die meisten Vorteile – Beitragsrabatt, Gästekarten, Wasser-Flatrate – gibt
+            es aber nur zusammen mit einer Sportmitgliedschaft.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Wie viel Geld kann ich im schlimmsten Fall verlieren?</summary>
+          <p>
+            Du haftest höchstens mit deinem Anteil – also 300 €, 900 € oder 3.000 €,
+            niemals darüber hinaus. Müsste das Studio schließen, bekämst du anteilig
+            zurück, was nach Abzug der Schulden übrig bleibt.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Was ist die Dividende?</summary>
+          <p>
+            Macht das Studio Gewinn, kann die Generalversammlung beschließen, einen
+            Teil davon an die Mitglieder auszuschütten – im Verhältnis zu den Anteilen.
+            Eine Garantie gibt es nicht, die Höhe hängt vom Ergebnis ab.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Was wird in der Generalversammlung entschieden?</summary>
+          <p>
+            Einmal im Jahr treffen sich alle Genossen und beschließen gemeinsam: wer
+            im Vorstand sitzt, ob und wie viel Dividende ausgeschüttet wird, welche
+            größeren Investitionen anstehen und Änderungen der Satzung. Es gilt:
+            1 Anteil = 1 Stimme, 3 Anteile = 2 Stimmen, 10 Anteile = 3 Stimmen (Maximum).
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Kann ich später mehr Anteile dazukaufen?</summary>
+          <p>
+            Ja, jederzeit. Von Basis auf Plus oder Förderer aufzustocken ist einfach:
+            kurz beim Vorstand melden und die Differenz überweisen.
+          </p>
+        </details>
+      </div>
+
+      <p class="geno-disclaimer">
+        Stand der Planung. Alle Konditionen, Preise und Vorteile werden mit der
+        Gründung der Genossenschaft verbindlich festgelegt und in der Satzung geregelt.
+        Genossenschaftsanteile sind keine Geldanlage zur Rendite, sondern eine
+        Beteiligung am gemeinsamen Studio.
+      </p>
     </div>
   </section>
 
@@ -1173,9 +1449,11 @@
     </div>
   </section>
 
-  <div id="lightbox" onclick="closeLightbox()">
+  <div id="lightbox">
     <button id="lightbox-close" onclick="closeLightbox()" aria-label="Schließen">&#x2715;</button>
+    <button id="lightbox-prev" class="lightbox-nav" type="button" aria-label="Vorheriges Bild">&#x2039;</button>
     <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
+    <button id="lightbox-next" class="lightbox-nav" type="button" aria-label="Nächstes Bild">&#x203A;</button>
   </div>
 
   <section id="galerie">
@@ -1276,43 +1554,152 @@
     </div>
   </section>
 
+  <div id="impressum-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-label="Impressum">
+      <button class="modal-close" onclick="closeImpressum()" aria-label="Schließen">&#x2715;</button>
+      <h3>Impressum</h3>
+      <p><strong>Sportstudio Schönefeld</strong> – Genossenschaft in Gründung</p>
+      <p><strong>Initiator des Projekts:</strong><br />Jens Kurzentat</p>
+      <p>
+        <strong>Kontakt:</strong><br />
+        E-Mail: <a href="mailto:leostrasseLEschoenefeld@web.de">leostrasseLEschoenefeld@web.de</a>
+      </p>
+      <p class="impressum-note">
+        Das Sportstudio wird derzeit als eingetragene Genossenschaft (eG) gegründet.
+        Sobald die Eintragung ins Genossenschaftsregister erfolgt ist, wird dieses
+        Impressum um die Angaben der Genossenschaft (Vorstand, Registergericht und
+        Registernummer) ergänzt.
+      </p>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-inner">
       <div class="footer-logo">
         <img src="Sportstätte Schönefeld Logo.png" alt="Sportstudio Schönefeld" />
       </div>
       <p class="footer-text">Sportstudio Schönefeld · Leostraße 4 · 04347 Leipzig · leostrasseLEschoenefeld@web.de</p>
+      <div class="footer-links">
+        <a href="#" onclick="openImpressum(); return false;">Impressum</a>
+      </div>
       <p class="footer-text tag">Sport frei!</p>
     </div>
   </footer>
 
   <script>
-    function openLightbox(src, alt) {
-      var lb  = document.getElementById('lightbox');
+    var galleryImages = [];
+    (function collectGalleryImages() {
+      var imgs = document.querySelectorAll('#galerie-track .carousel-slide img');
+      for (var i = 0; i < imgs.length; i++) {
+        galleryImages.push({ src: imgs[i].getAttribute('src'), alt: imgs[i].getAttribute('alt') || '' });
+      }
+    })();
+    var lbIndex = 0;
+
+    function renderLightbox() {
+      var g = galleryImages[lbIndex];
+      if (!g) return;
       var img = document.getElementById('lightbox-img');
-      img.src = src;
-      img.alt = alt || '';
-      lb.classList.add('open');
+      img.src = g.src;
+      img.alt = g.alt;
+    }
+    function openLightbox(src, alt) {
+      lbIndex = 0;
+      for (var i = 0; i < galleryImages.length; i++) {
+        if (galleryImages[i].src === src) { lbIndex = i; break; }
+      }
+      renderLightbox();
+      document.getElementById('lightbox').classList.add('open');
       document.body.style.overflow = 'hidden';
+    }
+    function lightboxStep(dir) {
+      if (!galleryImages.length) return;
+      lbIndex = (lbIndex + dir + galleryImages.length) % galleryImages.length;
+      renderLightbox();
     }
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('open');
       document.body.style.overflow = '';
     }
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeLightbox();
-    });
+
+    (function initLightboxControls() {
+      var lb = document.getElementById('lightbox');
+      if (!lb) return;
+      var prev = document.getElementById('lightbox-prev');
+      var next = document.getElementById('lightbox-next');
+      var sx = 0, sy = 0, tracking = false, decided = false, horiz = false, lbMoved = false;
+
+      if (prev) prev.addEventListener('click', function(e) { e.stopPropagation(); lightboxStep(-1); });
+      if (next) next.addEventListener('click', function(e) { e.stopPropagation(); lightboxStep(1); });
+
+      // Klick auf den dunklen Hintergrund schließt – Klicks auf Bild/Buttons nicht
+      lb.addEventListener('click', function(e) {
+        if (e.target === lb && !lbMoved) closeLightbox();
+        lbMoved = false;
+      });
+
+      // Zwischen Bildern wischen
+      lb.addEventListener('touchstart', function(e) {
+        if (e.touches.length !== 1) return;
+        sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+        tracking = true; decided = false; horiz = false; lbMoved = false;
+      }, { passive: true });
+      lb.addEventListener('touchmove', function(e) {
+        if (!tracking) return;
+        var dxx = e.touches[0].clientX - sx, dyy = e.touches[0].clientY - sy;
+        if (!decided && (Math.abs(dxx) > 8 || Math.abs(dyy) > 8)) {
+          decided = true; horiz = Math.abs(dxx) > Math.abs(dyy);
+        }
+        if (decided && horiz) { e.preventDefault(); lbMoved = true; }
+      }, { passive: false });
+      lb.addEventListener('touchend', function(e) {
+        if (!tracking) return; tracking = false;
+        if (!horiz) return;
+        var dxx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dxx) > 40) lightboxStep(dxx < 0 ? 1 : -1);
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowRight') { e.preventDefault(); lightboxStep(1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); lightboxStep(-1); }
+      });
+    })();
+
+    function openImpressum() {
+      var m = document.getElementById('impressum-modal');
+      m.classList.add('open');
+      m.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeImpressum() {
+      var m = document.getElementById('impressum-modal');
+      m.classList.remove('open');
+      m.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    (function initImpressumModal() {
+      var m = document.getElementById('impressum-modal');
+      if (!m) return;
+      // Klick auf den Hintergrund schließt; Klick auf die Box nicht
+      m.addEventListener('click', function(e) { if (e.target === m) closeImpressum(); });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && m.classList.contains('open')) closeImpressum();
+      });
+    })();
 
     (function initCarousel() {
       var track = document.getElementById('galerie-track');
       var dotsContainer = document.getElementById('galerie-dots');
       var carousel = document.getElementById('galerie-carousel');
       if (!track || !dotsContainer || !carousel) return;
-      var slides = track.querySelectorAll('.carousel-slide');
+      var slides = Array.prototype.slice.call(track.querySelectorAll('.carousel-slide'));
       var prevBtn = carousel.querySelector('.carousel-prev');
       var nextBtn = carousel.querySelector('.carousel-next');
+      var index = 0;
 
-      // Build dots
+      // Punkte (Dots) aufbauen
       var dots = [];
       slides.forEach(function(_, i) {
         var dot = document.createElement('button');
@@ -1325,35 +1712,73 @@
         dots.push(dot);
       });
 
-      function currentIndex() {
-        var w = track.clientWidth;
-        if (w === 0) return 0;
-        return Math.round(track.scrollLeft / w);
-      }
-      function goTo(i) {
-        i = Math.max(0, Math.min(slides.length - 1, i));
-        track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+      function clamp(i) { return Math.max(0, Math.min(slides.length - 1, i)); }
+      function render(offset, animate) {
+        track.style.transition = animate ? 'transform 0.35s ease' : 'none';
+        track.style.transform = 'translateX(calc(' + (-index * 100) + '% + ' + (offset || 0) + 'px))';
       }
       function updateDots() {
-        var idx = currentIndex();
-        dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === index); });
+      }
+      function goTo(i) {
+        index = clamp(i);
+        render(0, true);
+        updateDots();
       }
 
-      prevBtn.addEventListener('click', function() { goTo(currentIndex() - 1); });
-      nextBtn.addEventListener('click', function() { goTo(currentIndex() + 1); });
+      prevBtn.addEventListener('click', function() { goTo(index - 1); });
+      nextBtn.addEventListener('click', function() { goTo(index + 1); });
 
-      var scrollTimer;
-      track.addEventListener('scroll', function() {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(updateDots, 60);
-      });
-
-      // Keyboard navigation when carousel is focused
+      // Tastaturnavigation, wenn die Galerie fokussiert ist
       carousel.setAttribute('tabindex', '0');
       carousel.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(currentIndex() - 1); }
-        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(index - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1); }
       });
+
+      // Wischen: genau ein Bild pro Geste, das Bild folgt dem Finger
+      var startX = 0, startY = 0, dx = 0, dragging = false, decided = false, horiz = false, moved = false;
+      track.addEventListener('touchstart', function(e) {
+        if (e.touches.length !== 1) return;
+        startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+        dx = 0; dragging = true; decided = false; horiz = false; moved = false;
+      }, { passive: true });
+      track.addEventListener('touchmove', function(e) {
+        if (!dragging) return;
+        var diffX = e.touches[0].clientX - startX, diffY = e.touches[0].clientY - startY;
+        if (!decided && (Math.abs(diffX) > 8 || Math.abs(diffY) > 8)) {
+          decided = true; horiz = Math.abs(diffX) > Math.abs(diffY);
+        }
+        if (decided && horiz) {
+          e.preventDefault();
+          moved = true;
+          dx = diffX;
+          // Widerstand an den Enden
+          if ((index === 0 && dx > 0) || (index === slides.length - 1 && dx < 0)) dx *= 0.35;
+          render(dx, false);
+        }
+      }, { passive: false });
+      function endDrag() {
+        if (!dragging) return;
+        dragging = false;
+        if (!horiz) return;
+        var threshold = track.clientWidth * 0.15; // 15 % der Breite = ein Schritt
+        if (dx <= -threshold) index = clamp(index + 1);
+        else if (dx >= threshold) index = clamp(index - 1);
+        render(0, true);
+        updateDots();
+        dx = 0;
+      }
+      track.addEventListener('touchend', endDrag);
+      track.addEventListener('touchcancel', endDrag);
+
+      // Nach einem Wisch nicht versehentlich die Lightbox öffnen
+      track.addEventListener('click', function(e) {
+        if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+      }, true);
+
+      window.addEventListener('resize', function() { render(0, false); });
+      render(0, false);
     })();
 
     function copyEmail() {
