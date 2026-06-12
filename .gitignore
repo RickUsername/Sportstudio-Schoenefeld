@@ -17,3 +17,6 @@ Desktop.ini
 # Internal context (not for public repo)
 kontext/
 /og-image-*.jpg
+
+# Bild-Originale (nur komprimierte Web-Versionen kommen ins Repo)
+Neue Bilder/
