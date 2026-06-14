@@ -395,20 +395,22 @@
     }
     .mission-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
     .mission-icon {
-      width: 52px;
-      height: 52px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
       margin-bottom: 1.25rem;
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: 1.5rem;
+      background: var(--cream-dk);
     }
-    .mission-card:nth-child(1) .mission-icon { background: rgba(184, 84, 54, 0.14); color: var(--terracotta); }
-    .mission-card:nth-child(2) .mission-icon { background: rgba(74, 107, 58, 0.14); color: var(--forest); }
-    .mission-card:nth-child(3) .mission-icon { background: rgba(217, 154, 74, 0.18); color: var(--honey); }
+    .mission-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .mission-card:nth-child(1) .mission-icon { box-shadow: 0 0 0 3px rgba(184, 84, 54, 0.30); }
+    .mission-card:nth-child(2) .mission-icon { box-shadow: 0 0 0 3px rgba(74, 107, 58, 0.30); }
+    .mission-card:nth-child(3) .mission-icon { box-shadow: 0 0 0 3px rgba(217, 154, 74, 0.34); }
     .mission-card h3 { color: var(--walnut); }
     .mission-card p { font-size: 0.97rem; color: var(--walnut-soft); margin-bottom: 0; }
 
@@ -643,6 +645,8 @@
       flex-shrink: 0;
     }
     .anlage-card .icon-wrap svg { width: 28px; height: 28px; stroke-width: 1.6; }
+    .anlage-card .icon-wrap { overflow: hidden; }
+    .anlage-card .icon-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: inherit; }
 
     .anlage-card .anlage-category {
       display: inline-block;
@@ -1055,6 +1059,33 @@
       section { padding: 4.5rem 0; }
     }
   </style>
+
+  <!-- Strukturierte Daten für Google (lokale Suche / Knowledge Panel) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Sportstudio Schönefeld",
+    "description": "Sportstudio in Leipzig-Schönefeld, seit 1994. Wir gründen eine Genossenschaft, um das Studio gemeinsam weiterzuführen und wieder zu eröffnen.",
+    "url": "https://sportstudioschoenefeld.de/",
+    "logo": "https://sportstudioschoenefeld.de/og-image.jpg",
+    "image": "https://sportstudioschoenefeld.de/og-image.jpg",
+    "email": "leostrasseLEschoenefeld@web.de",
+    "foundingDate": "1994",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Leostraße 4",
+      "postalCode": "04347",
+      "addressLocality": "Leipzig",
+      "addressRegion": "Sachsen",
+      "addressCountry": "DE"
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "Leipzig-Schönefeld"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -1202,7 +1233,7 @@
       <hr class="divider" />
       <div class="mission-grid">
         <div class="mission-card">
-          <div class="mission-icon">♥</div>
+          <div class="mission-icon"><img src="m-gemeinschaft.jpg" alt="Gemütliche Sitzecke im Sportstudio Schönefeld" loading="lazy" /></div>
           <h3>Gemeinschaft zuerst</h3>
           <p>
             Kein anonymes Fitnessstudio – sondern ein Ort, wo man sich kennt, hilft und
@@ -1210,7 +1241,7 @@
           </p>
         </div>
         <div class="mission-card">
-          <div class="mission-icon">✦</div>
+          <div class="mission-icon"><img src="m-basis.jpg" alt="Blick über die Trainingsfläche des Sportstudios Schönefeld" loading="lazy" /></div>
           <h3>Basisdemokratisch</h3>
           <p>
             Als Genossenschaft gehört das Studio seinen Mitgliedern. Alle haben eine
@@ -1218,7 +1249,7 @@
           </p>
         </div>
         <div class="mission-card">
-          <div class="mission-icon">☼</div>
+          <div class="mission-icon"><img src="m-offen.jpg" alt="Heller, offener Kursraum im Sportstudio Schönefeld" loading="lazy" /></div>
           <h3>Für alle offen</h3>
           <p>
             Von der Schülerin bis zum Rentner, von Schönefeld bis in die Nachbarteile –
@@ -1394,12 +1425,7 @@
         <!-- Feature card: Garten & Outdoor -->
         <div class="anlage-card feature tone-forest">
           <div class="icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 22V12"/>
-              <path d="M12 12c-3 0-6-2-6-6 3 0 6 2 6 6z"/>
-              <path d="M12 12c3 0 6-2 6-6-3 0-6 2-6 6z"/>
-              <path d="M4 22h16"/>
-            </svg>
+            <img src="a-garten.jpg" alt="Garten und Outdoorbereich des Sportstudios Schönefeld" loading="lazy" />
           </div>
           <div class="feature-body">
             <span class="anlage-category">Außenbereich · Highlight</span>
@@ -1411,13 +1437,7 @@
         <!-- Half cards -->
         <div class="anlage-card half tone-terracotta">
           <div class="icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 12h2"/>
-              <path d="M19 12h2"/>
-              <rect x="5" y="8" width="3" height="8" rx="1"/>
-              <rect x="16" y="8" width="3" height="8" rx="1"/>
-              <path d="M8 12h8"/>
-            </svg>
+            <img src="a-kraft.jpg" alt="Hantelbereich im Sportstudio Schönefeld" loading="lazy" />
           </div>
           <span class="anlage-category">Trainingsfläche</span>
           <h3>Kraft & Fitness</h3>
@@ -1426,9 +1446,7 @@
 
         <div class="anlage-card half tone-honey">
           <div class="icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
+            <img src="a-gesundheit.jpg" alt="Mattenraum für Gymnastik und Kurse im Sportstudio Schönefeld" loading="lazy" />
           </div>
           <span class="anlage-category">Kursangebot</span>
           <h3>Gesundheit & Kurse</h3>
@@ -1438,12 +1456,7 @@
         <!-- Third cards (in a row of 2 on the half-grid since we only have 2 left) -->
         <div class="anlage-card half tone-terracotta">
           <div class="icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 21V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v13"/>
-              <path d="M3 21h18"/>
-              <path d="M9 12c0-1 1-2 3-2s3 1 3 2-1 2-3 2-3-1-3-2z"/>
-              <path d="M9 9c.5-1 1.5-1.5 3-1.5s2.5.5 3 1.5"/>
-            </svg>
+            <img src="a-sauna.jpg" alt="Saunabereich im Sportstudio Schönefeld" loading="lazy" />
           </div>
           <span class="anlage-category">Wellness</span>
           <h3>Sauna & Umkleiden</h3>
@@ -1452,12 +1465,7 @@
 
         <div class="anlage-card half tone-walnut">
           <div class="icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 21h18"/>
-              <path d="M5 21V10l7-5 7 5v11"/>
-              <path d="M9 21v-6h6v6"/>
-              <path d="M9 11h6"/>
-            </svg>
+            <img src="a-turnhalle.jpg" alt="Empore der historischen Turnhalle des Sportstudios Schönefeld" loading="lazy" />
           </div>
           <span class="anlage-category">Geschichte · seit 1890</span>
           <h3>Historische Turnhalle</h3>
