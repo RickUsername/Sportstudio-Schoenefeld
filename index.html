@@ -311,6 +311,7 @@
     @media (min-width: 640px) { .news-card { grid-template-columns: 300px 1fr; } }
     .news-card-img { width: 100%; height: 220px; object-fit: cover; display: block; }
     @media (min-width: 640px) { .news-card-img { height: 100%; min-height: 200px; } }
+    .news-card-img.contain { object-fit: contain; background: var(--walnut); }
     .news-card-body { padding: 1.75rem; display: flex; flex-direction: column; justify-content: center; }
     .news-date {
       font-size: 0.75rem;
@@ -474,6 +475,12 @@
       justify-content: center;
       flex-shrink: 0;
       box-shadow: 0 4px 12px rgba(184, 84, 54, 0.4);
+    }
+    .geno-steps li.done { color: rgba(248, 241, 230, 0.6); }
+    .geno-steps li.done::before {
+      content: '\2713';
+      background: var(--forest);
+      box-shadow: 0 4px 12px rgba(58, 92, 61, 0.4);
     }
     .geno-cta {
       background: rgba(255, 250, 242, 0.06);
@@ -813,6 +820,53 @@
       opacity: 0.7;
     }
 
+    #videos { background: var(--cream); padding: 4.5rem 0; }
+    .videos-intro {
+      max-width: 60ch;
+      margin: -0.5rem 0 2rem;
+      font-size: 1.02rem;
+      color: var(--muted);
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .video-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--walnut);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .video-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .video-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+    .video-play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(42, 32, 24, 0.55);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      padding-left: 4px;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .video-card:hover .video-play-icon { background: var(--terracotta); transform: translate(-50%, -50%) scale(1.08); }
+
     #oeffnungszeiten { background: var(--cream-dk); }
     .oz-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
     @media (min-width: 768px) { .oz-grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; } }
@@ -921,6 +975,14 @@
     }
     .kontakt-email-text:hover { background: rgba(255, 250, 242, 0.06); }
     .kontakt-hint { font-size: 0.82rem; color: rgba(248, 241, 230, 0.45); font-style: italic; margin-bottom: 0; }
+    .kontakt-or {
+      font-size: 0.92rem;
+      color: rgba(248, 241, 230, 0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 1.25rem auto 0;
+    }
+    a.kontakt-email-text { text-decoration: none; }
     .heart-strip {
       display: inline-flex;
       gap: 0.6rem;
@@ -1054,6 +1116,33 @@
       .lightbox-nav { width: 40px; height: 40px; font-size: 1.7rem; background: rgba(255, 255, 255, 0.2); }
     }
 
+    #video-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(42, 32, 24, 0.94);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    #video-lightbox.open { display: flex; }
+    #video-lightbox video { max-width: 100%; max-height: 90vh; border-radius: 8px; box-shadow: 0 8px 60px rgba(0,0,0,0.6); }
+    #video-lightbox-close {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.5rem;
+      color: var(--paper);
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      opacity: 0.75;
+      background: none;
+      border: none;
+      transition: opacity 0.15s;
+    }
+    #video-lightbox-close:hover { opacity: 1; }
+
     @media (max-width: 720px) {
       .nav-links { display: none; }
       section { padding: 4.5rem 0; }
@@ -1101,6 +1190,7 @@
         <li><a href="#genossenschaft">Genossenschaft</a></li>
         <li><a href="#anlage">Anlage</a></li>
         <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#videos">Videos</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </div>
@@ -1135,6 +1225,32 @@
       <h2>Neuigkeiten</h2>
       <hr class="divider" />
       <div class="news-grid">
+        <div class="news-card">
+          <img src="genossenschaft-gruendung.jpg" alt="Der Vorstand der Genossenschaft Sportstudio Schönefeld bei der Gründung" class="news-card-img contain" />
+          <div class="news-card-body">
+            <div class="news-date">05.08.2026</div>
+            <h3>Wir starten durch: Die Genossenschaft ist gegründet!</h3>
+            <p>
+              Am Mittwoch, dem 05.08.2026, haben wir die <strong>Genossenschaft gegründet</strong> –
+              zunächst im kleinen Kreis, weil uns noch die passenden Räumlichkeiten für eine
+              größere Versammlung fehlen. Wer noch beitreten möchte: Meldet euch einfach, wir
+              schicken euch gern die Satzung (aktuell im Entwurf).
+            </p>
+            <p>
+              Auch beim <strong>Pachtvertrag</strong> gibt es gute Nachrichten: Mit den
+              Eigentümern wurde ein fairer Kompromiss gefunden, die endgültige Fassung liegt
+              vor und kann jetzt unterschrieben werden.
+            </p>
+            <p>
+              Als Nächstes stehen die <strong>Eintragung ins Genossenschaftsregister</strong>
+              und der Start unserer <strong>Crowdfunding-Kampagne</strong> über die Plattform
+              der Leipziger Gruppe an – jeder Euro zählt. Unser Ziel:
+              <strong>Neustart am 01.10.2026</strong>. Macht mit, die Chance ist da – dieses
+              Studio gehört seinen Mitgliedern und Sportlern und ist ein toller Beitrag für ein
+              lebendiges Schönefeld. 💪
+            </p>
+          </div>
+        </div>
         <div class="news-card">
           <img src="sauna.jpg" alt="Blick in die Sauna des Sportstudios Schönefeld" class="news-card-img" />
           <div class="news-card-body">
@@ -1281,9 +1397,10 @@
             Sportstudio stellen – und so Schritt für Schritt wieder öffnen und sanieren.
           </p>
           <ol class="geno-steps">
-            <li>Genossenschaft gründen – Termin und Ort folgen in Kürze</li>
+            <li class="done">Genossenschaft gegründet – 05.08.2026 ✓</li>
+            <li>Eintragung ins Genossenschaftsregister & Pachtvertrag unterzeichnen</li>
             <li>Crowdfunding-Kampagne starten, um die Anlaufphase zu finanzieren</li>
-            <li>Sportbetrieb so schnell wie möglich wieder aufnehmen</li>
+            <li>Sportbetrieb wieder aufnehmen – Ziel: 01.10.2026</li>
             <li>Schritt für Schritt sanieren und das Kursangebot ausbauen</li>
           </ol>
         </div>
@@ -1483,6 +1600,11 @@
     <button id="lightbox-next" class="lightbox-nav" type="button" aria-label="Nächstes Bild">&#x203A;</button>
   </div>
 
+  <div id="video-lightbox">
+    <button id="video-lightbox-close" onclick="closeVideoLightbox()" aria-label="Schließen">&#x2715;</button>
+    <video id="video-lightbox-player" controls playsinline onclick="event.stopPropagation()"></video>
+  </div>
+
   <section id="galerie">
     <div class="container">
       <span class="section-label">Einblicke</span>
@@ -1492,81 +1614,145 @@
         <button class="carousel-btn carousel-prev" type="button" aria-label="Vorheriges Bild">&#x2039;</button>
         <div class="carousel-track" id="galerie-track">
           <div class="carousel-slide">
-            <img src="WhatsApp Image 2026-05-25 at 10.28.03 Garten.jpeg" alt="Sonnige Gartenterrasse des Sportstudios Schönefeld" loading="lazy" onclick="openLightbox('WhatsApp Image 2026-05-25 at 10.28.03 Garten.jpeg','Sonnige Gartenterrasse des Sportstudios Schönefeld')" />
+            <img src="WhatsApp Image 2026-05-25 at 10.28.03 Garten.jpeg" alt="Sonnige Gartenterrasse des Sportstudios Schönefeld" onclick="openLightbox('WhatsApp Image 2026-05-25 at 10.28.03 Garten.jpeg','Sonnige Gartenterrasse des Sportstudios Schönefeld')" />
           </div>
           <div class="carousel-slide">
-            <img src="WhatsApp Image 2026-04-28 at 10.57.32.jpeg" alt="Heller Kursraum mit Holzfußboden" loading="lazy" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.32.jpeg','Heller Kursraum mit Holzfußboden')" />
+            <img src="WhatsApp Image 2026-04-28 at 10.57.32.jpeg" alt="Heller Kursraum mit Holzfußboden" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.32.jpeg','Heller Kursraum mit Holzfußboden')" />
           </div>
           <div class="carousel-slide">
-            <img src="IMG20260224193525.jpg" alt="Blick über das Sportstudio mit Geräten und Mezzanine" loading="lazy" onclick="openLightbox('IMG20260224193525.jpg','Blick über das Sportstudio mit Geräten und Mezzanine')" />
+            <img src="IMG20260224193525.jpg" alt="Blick über das Sportstudio mit Geräten und Mezzanine" onclick="openLightbox('IMG20260224193525.jpg','Blick über das Sportstudio mit Geräten und Mezzanine')" />
           </div>
           <div class="carousel-slide">
-            <img src="WhatsApp Image 2026-04-28 at 10.57.31.jpeg" alt="Fitnessbereich mit Geräten" loading="lazy" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.31.jpeg','Fitnessbereich mit Geräten')" />
+            <img src="WhatsApp Image 2026-04-28 at 10.57.31.jpeg" alt="Fitnessbereich mit Geräten" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.31.jpeg','Fitnessbereich mit Geräten')" />
           </div>
           <div class="carousel-slide">
-            <img src="IMG20260224193512.jpg" alt="Empfangsbereich mit Blick in den Trainingsraum" loading="lazy" onclick="openLightbox('IMG20260224193512.jpg','Empfangsbereich mit Blick in den Trainingsraum')" />
+            <img src="IMG20260224193512.jpg" alt="Empfangsbereich mit Blick in den Trainingsraum" onclick="openLightbox('IMG20260224193512.jpg','Empfangsbereich mit Blick in den Trainingsraum')" />
           </div>
           <div class="carousel-slide">
-            <img src="WhatsApp Image 2026-04-28 at 10.57.33.jpeg" alt="Sportstudio Schönefeld" loading="lazy" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.33.jpeg','Sportstudio Schönefeld')" />
+            <img src="WhatsApp Image 2026-04-28 at 10.57.33.jpeg" alt="Sportstudio Schönefeld" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.33.jpeg','Sportstudio Schönefeld')" />
           </div>
           <div class="carousel-slide">
-            <img src="WhatsApp Image 2026-04-28 at 10.57.34.jpeg" alt="Sportstudio Schönefeld" loading="lazy" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.34.jpeg','Sportstudio Schönefeld')" />
+            <img src="WhatsApp Image 2026-04-28 at 10.57.34.jpeg" alt="Sportstudio Schönefeld" onclick="openLightbox('WhatsApp Image 2026-04-28 at 10.57.34.jpeg','Sportstudio Schönefeld')" />
           </div>
           <div class="carousel-slide">
-            <img src="sitzecke-keller.jpg" alt="Gemütliche Sitzecke im Keller" loading="lazy" onclick="openLightbox('sitzecke-keller.jpg','Gemütliche Sitzecke im Keller')" />
+            <img src="sitzecke-keller.jpg" alt="Gemütliche Sitzecke im Keller" onclick="openLightbox('sitzecke-keller.jpg','Gemütliche Sitzecke im Keller')" />
           </div>
           <div class="carousel-slide">
-            <img src="massageraum.jpg" alt="Massageraum" loading="lazy" onclick="openLightbox('massageraum.jpg','Massageraum')" />
+            <img src="massageraum.jpg" alt="Massageraum" onclick="openLightbox('massageraum.jpg','Massageraum')" />
           </div>
           <div class="carousel-slide">
-            <img src="rollmassage.jpg" alt="Rollmassage im Wellnessbereich" loading="lazy" onclick="openLightbox('rollmassage.jpg','Rollmassage im Wellnessbereich')" />
+            <img src="rollmassage.jpg" alt="Rollmassage im Wellnessbereich" onclick="openLightbox('rollmassage.jpg','Rollmassage im Wellnessbereich')" />
           </div>
           <div class="carousel-slide">
-            <img src="mattenraum.jpg" alt="Mattenraum für Gymnastik" loading="lazy" onclick="openLightbox('mattenraum.jpg','Mattenraum für Gymnastik')" />
+            <img src="mattenraum.jpg" alt="Mattenraum für Gymnastik" onclick="openLightbox('mattenraum.jpg','Mattenraum für Gymnastik')" />
           </div>
           <div class="carousel-slide">
-            <img src="tischtennis.jpg" alt="Tischtennisbereich" loading="lazy" onclick="openLightbox('tischtennis.jpg','Tischtennisbereich')" />
+            <img src="tischtennis.jpg" alt="Tischtennisbereich" onclick="openLightbox('tischtennis.jpg','Tischtennisbereich')" />
           </div>
           <div class="carousel-slide">
-            <img src="cycling.jpg" alt="Cycling-Raum mit Indoor-Bikes" loading="lazy" onclick="openLightbox('cycling.jpg','Cycling-Raum mit Indoor-Bikes')" />
+            <img src="cycling.jpg" alt="Cycling-Raum mit Indoor-Bikes" onclick="openLightbox('cycling.jpg','Cycling-Raum mit Indoor-Bikes')" />
           </div>
           <div class="carousel-slide">
-            <img src="sauna.jpg" alt="Blick in die Sauna" loading="lazy" onclick="openLightbox('sauna.jpg','Blick in die Sauna')" />
+            <img src="sauna.jpg" alt="Blick in die Sauna" onclick="openLightbox('sauna.jpg','Blick in die Sauna')" />
           </div>
           <div class="carousel-slide">
-            <img src="ruheraum.jpg" alt="Ruheraum zum Entspannen" loading="lazy" onclick="openLightbox('ruheraum.jpg','Ruheraum zum Entspannen')" />
+            <img src="ruheraum.jpg" alt="Ruheraum zum Entspannen" onclick="openLightbox('ruheraum.jpg','Ruheraum zum Entspannen')" />
           </div>
           <div class="carousel-slide">
-            <img src="saunaaustritt.jpg" alt="Saunaaustritt" loading="lazy" onclick="openLightbox('saunaaustritt.jpg','Saunaaustritt')" />
+            <img src="saunaaustritt.jpg" alt="Saunaaustritt" onclick="openLightbox('saunaaustritt.jpg','Saunaaustritt')" />
           </div>
           <div class="carousel-slide">
-            <img src="hantelablage.jpg" alt="Hantelablage im Trainingsbereich" loading="lazy" onclick="openLightbox('hantelablage.jpg','Hantelablage im Trainingsbereich')" />
+            <img src="hantelablage.jpg" alt="Hantelablage im Trainingsbereich" onclick="openLightbox('hantelablage.jpg','Hantelablage im Trainingsbereich')" />
           </div>
           <div class="carousel-slide">
-            <img src="hantelbereich.jpg" alt="Hantelbereich mit Freihanteln" loading="lazy" onclick="openLightbox('hantelbereich.jpg','Hantelbereich mit Freihanteln')" />
+            <img src="hantelbereich.jpg" alt="Hantelbereich mit Freihanteln" onclick="openLightbox('hantelbereich.jpg','Hantelbereich mit Freihanteln')" />
           </div>
           <div class="carousel-slide">
-            <img src="kursraum-neu.jpg" alt="Heller Kursraum" loading="lazy" onclick="openLightbox('kursraum-neu.jpg','Heller Kursraum')" />
+            <img src="kursraum-neu.jpg" alt="Heller Kursraum" onclick="openLightbox('kursraum-neu.jpg','Heller Kursraum')" />
           </div>
           <div class="carousel-slide">
-            <img src="balustrade.jpg" alt="Balustrade mit Blick über das Studio" loading="lazy" onclick="openLightbox('balustrade.jpg','Balustrade mit Blick über das Studio')" />
+            <img src="balustrade.jpg" alt="Balustrade mit Blick über das Studio" onclick="openLightbox('balustrade.jpg','Balustrade mit Blick über das Studio')" />
           </div>
           <div class="carousel-slide">
-            <img src="studiogarten.jpg" alt="Blick in den Studiogarten" loading="lazy" onclick="openLightbox('studiogarten.jpg','Blick in den Studiogarten')" />
+            <img src="studiogarten.jpg" alt="Blick in den Studiogarten" onclick="openLightbox('studiogarten.jpg','Blick in den Studiogarten')" />
           </div>
           <div class="carousel-slide">
-            <img src="garten-1.jpg" alt="Studiogarten" loading="lazy" onclick="openLightbox('garten-1.jpg','Studiogarten')" />
+            <img src="garten-1.jpg" alt="Studiogarten" onclick="openLightbox('garten-1.jpg','Studiogarten')" />
           </div>
           <div class="carousel-slide">
-            <img src="garten-2.jpg" alt="Studiogarten mit Sitzgelegenheiten" loading="lazy" onclick="openLightbox('garten-2.jpg','Studiogarten mit Sitzgelegenheiten')" />
+            <img src="garten-2.jpg" alt="Studiogarten mit Sitzgelegenheiten" onclick="openLightbox('garten-2.jpg','Studiogarten mit Sitzgelegenheiten')" />
           </div>
           <div class="carousel-slide">
-            <img src="garten-3.jpg" alt="Studiogarten im Sommer" loading="lazy" onclick="openLightbox('garten-3.jpg','Studiogarten im Sommer')" />
+            <img src="garten-3.jpg" alt="Studiogarten im Sommer" onclick="openLightbox('garten-3.jpg','Studiogarten im Sommer')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="kraftraum-dachgeschoss-1.jpg" alt="Trainingsraum im Dachgeschoss mit Kraftgeräten" onclick="openLightbox('kraftraum-dachgeschoss-1.jpg','Trainingsraum im Dachgeschoss mit Kraftgeräten')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="kraftraum-dachgeschoss-2.jpg" alt="Kraftgeräte im Trainingsraum unterm Dach" onclick="openLightbox('kraftraum-dachgeschoss-2.jpg','Kraftgeräte im Trainingsraum unterm Dach')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="kursraum-bogenfenster-1.jpg" alt="Heller Kursraum mit hohen Bogenfenstern" onclick="openLightbox('kursraum-bogenfenster-1.jpg','Heller Kursraum mit hohen Bogenfenstern')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="kursraum-bogenfenster-2.jpg" alt="Kursraum mit Bogenfenstern und Theke" onclick="openLightbox('kursraum-bogenfenster-2.jpg','Kursraum mit Bogenfenstern und Theke')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="cycling-2.jpg" alt="Cycling-Raum mit Indoor-Bikes" onclick="openLightbox('cycling-2.jpg','Cycling-Raum mit Indoor-Bikes')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="garten-4.jpg" alt="Blick in den gepflegten Studiogarten" onclick="openLightbox('garten-4.jpg','Blick in den gepflegten Studiogarten')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="team-garten-1.jpg" alt="Mitglieder der Genossenschaft im Studiogarten" onclick="openLightbox('team-garten-1.jpg','Mitglieder der Genossenschaft im Studiogarten')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="team-garten-2.jpg" alt="Mitglieder der Genossenschaft im Studiogarten" onclick="openLightbox('team-garten-2.jpg','Mitglieder der Genossenschaft im Studiogarten')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="team-garten-3.jpg" alt="Mitglieder der Genossenschaft im Studiogarten" onclick="openLightbox('team-garten-3.jpg','Mitglieder der Genossenschaft im Studiogarten')" />
+          </div>
+          <div class="carousel-slide">
+            <img src="team-garten-4.jpg" alt="Mitglieder der Genossenschaft unter Bäumen im Garten" onclick="openLightbox('team-garten-4.jpg','Mitglieder der Genossenschaft unter Bäumen im Garten')" />
           </div>
         </div>
         <button class="carousel-btn carousel-next" type="button" aria-label="Nächstes Bild">&#x203A;</button>
       </div>
       <div class="carousel-dots" id="galerie-dots" role="tablist" aria-label="Galerie-Navigation"></div>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="container">
+      <span class="section-label">Einblicke</span>
+      <h2>Stimmen aus dem Studio</h2>
+      <hr class="divider" />
+      <p class="videos-intro">
+        Mitglieder unserer Genossenschaft erzählen in kurzen Videos, warum ihnen das
+        Sportstudio Schönefeld am Herzen liegt.
+      </p>
+      <div class="video-grid">
+        <div class="video-card" onclick="openVideoLightbox('video-mitglied-1.mp4','video-mitglied-1-poster.jpg')">
+          <img src="video-mitglied-1-poster.jpg" alt="Video-Statement eines Mitglieds" />
+          <span class="video-play-icon" aria-hidden="true">&#x25B6;</span>
+        </div>
+        <div class="video-card" onclick="openVideoLightbox('video-mitglied-2.mp4','video-mitglied-2-poster.jpg')">
+          <img src="video-mitglied-2-poster.jpg" alt="Video-Statement eines Mitglieds" />
+          <span class="video-play-icon" aria-hidden="true">&#x25B6;</span>
+        </div>
+        <div class="video-card" onclick="openVideoLightbox('video-mitglied-3.mp4','video-mitglied-3-poster.jpg')">
+          <img src="video-mitglied-3-poster.jpg" alt="Video-Statement eines Mitglieds" />
+          <span class="video-play-icon" aria-hidden="true">&#x25B6;</span>
+        </div>
+        <div class="video-card" onclick="openVideoLightbox('video-mitglied-4.mp4','video-mitglied-4-poster.jpg')">
+          <img src="video-mitglied-4-poster.jpg" alt="Video-Statement eines Mitglieds" />
+          <span class="video-play-icon" aria-hidden="true">&#x25B6;</span>
+        </div>
+        <div class="video-card" onclick="openVideoLightbox('video-mitglied-5.mp4','video-mitglied-5-poster.jpg')">
+          <img src="video-mitglied-5-poster.jpg" alt="Video-Statement eines Mitglieds" />
+          <span class="video-play-icon" aria-hidden="true">&#x25B6;</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1579,9 +1765,9 @@
           <hr class="divider" />
           <div class="oz-notice">
             <strong>Aktuell vorübergehend geschlossen</strong>
-            Wir arbeiten mit Hochdruck daran, den Betrieb so bald wie möglich
-            wieder aufzunehmen. Alle Neuigkeiten werden direkt hier auf dieser
-            Seite veröffentlicht.
+            Die Genossenschaft ist gegründet, der Pachtvertrag steht – unser Ziel ist der
+            <strong>Neustart am 01.10.2026</strong>, wenn alles gut läuft. Alle Neuigkeiten
+            werden direkt hier auf dieser Seite veröffentlicht.
           </div>
           <p style="font-size:0.95rem;">
             Sobald wir die Genossenschaft gegründet und den Betrieb wieder aufgenommen
@@ -1629,6 +1815,8 @@
       </p>
       <button id="copy-email-btn" onclick="copyEmail()" class="kontakt-email-text" title="Klicken zum Kopieren">leostrasseLEschoenefeld@web.de</button>
       <p class="kontakt-hint" id="copy-hint">Klicken zum Kopieren</p>
+      <p class="kontakt-or">oder telefonisch</p>
+      <a href="tel:+491629371926" class="kontakt-email-text">0162 9371926</a>
     </div>
   </section>
 
@@ -1742,6 +1930,34 @@
         if (e.key === 'Escape') closeLightbox();
         else if (e.key === 'ArrowRight') { e.preventDefault(); lightboxStep(1); }
         else if (e.key === 'ArrowLeft') { e.preventDefault(); lightboxStep(-1); }
+      });
+    })();
+
+    function openVideoLightbox(src, poster) {
+      var modal = document.getElementById('video-lightbox');
+      var player = document.getElementById('video-lightbox-player');
+      player.setAttribute('poster', poster);
+      player.src = src;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      player.play().catch(function() {});
+    }
+    function closeVideoLightbox() {
+      var modal = document.getElementById('video-lightbox');
+      var player = document.getElementById('video-lightbox-player');
+      player.pause();
+      player.removeAttribute('src');
+      player.load();
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    (function initVideoLightboxControls() {
+      var vlb = document.getElementById('video-lightbox');
+      if (!vlb) return;
+      // Klick auf den dunklen Hintergrund schließt – Klick aufs Video nicht
+      vlb.addEventListener('click', function(e) { if (e.target === vlb) closeVideoLightbox(); });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && vlb.classList.contains('open')) closeVideoLightbox();
       });
     })();
 
