@@ -312,6 +312,9 @@
     .news-card-img { width: 100%; height: 220px; object-fit: cover; display: block; }
     @media (min-width: 640px) { .news-card-img { height: 100%; min-height: 200px; } }
     .news-card-img.contain { object-fit: contain; background: var(--walnut); }
+    .news-card-poster { display: block; background: var(--cream-dk); }
+    .news-card-poster img { width: 100%; height: auto; display: block; }
+    @media (min-width: 640px) { .news-card.invite { grid-template-columns: 340px 1fr; } }
     .news-card-body { padding: 1.75rem; display: flex; flex-direction: column; justify-content: center; }
     .news-date {
       font-size: 0.75rem;
@@ -1225,17 +1228,41 @@
       <h2>Neuigkeiten</h2>
       <hr class="divider" />
       <div class="news-grid">
+        <div class="news-card invite">
+          <a href="einladung-30-10-2026.jpg" target="_blank" rel="noopener" class="news-card-poster" aria-label="Einladung in voller Größe öffnen">
+            <img src="einladung-30-10-2026.jpg" alt="Einladung zur Beitrittsveranstaltung zur Gründung der Sportstudio Schönefeld eG am Freitag, 30.10.2026, 18:00 Uhr" />
+          </a>
+          <div class="news-card-body">
+            <div class="news-date">21.10.2026</div>
+            <h3>Save the date: Große Gründungsveranstaltung am Freitag, 30.10.2026</h3>
+            <p>
+              Am <strong>Freitag, dem 30.10.2026, um 18:00 Uhr</strong> gründen wir die
+              Genossenschaft ganz offiziell im großen Rahmen – so will es der
+              Genossenschaftsverband. Plant bitte etwa <strong>60 Minuten</strong> ein. Ihr seid
+              herzlich eingeladen, Teil dieses Moments zu sein!
+              <br /><strong>Ort:</strong>
+              <a href="https://www.google.com/maps/search/?api=1&query=Leostraße+4,+04347+Leipzig" target="_blank" rel="noopener">Sportstudio Schönefeld, Leostraße 4, 04347 Leipzig</a> 📍
+            </p>
+            <p>
+              Eine kleine Bitte: Lasst euch vorher die <strong>Satzung per E-Mail zuschicken</strong>
+              – schreibt uns dazu einfach kurz an
+              <a href="mailto:leostrasseLEschoenefeld@web.de">leostrasseLEschoenefeld@web.de</a>.
+              Wir freuen uns auf euch! 🎉
+            </p>
+          </div>
+        </div>
         <div class="news-card">
           <img src="wiedereroeffnung-01-11.jpg" alt="Trainingsbereich des Sportstudios Schönefeld" class="news-card-img" />
           <div class="news-card-body">
-            <div class="news-date">26.09.2026</div>
-            <h3>Es tut sich was: Wiedereröffnung voraussichtlich am 01.11.2026</h3>
+            <div class="news-date">21.10.2026</div>
+            <h3>Neuer Starttermin: Wiedereröffnung voraussichtlich am 01.12.2026</h3>
             <p>
-              Nach viel bürokratischem Aufwand können wir es endlich verkünden: Wir haben unser
-              Sportstudio zurückerobert! Voraussichtlich am <strong>01.11.2026</strong> soll es
-              wieder losgehen. Möglich wird das nur dank der zahlreichen Unterstützerinnen und
-              Unterstützer, die an uns geglaubt und mitgeholfen haben. Vielen Dank an alle – wir
-              halten euch auf dem Laufenden! 🎉
+              Nach viel bürokratischem Aufwand haben wir unser Sportstudio zurückerobert! Bis
+              zum Start gibt es aber noch einiges zu tun – deshalb planen wir die
+              Wiedereröffnung jetzt voraussichtlich für den <strong>01.12.2026</strong>. Möglich
+              wird das nur dank der zahlreichen Unterstützerinnen und Unterstützer, die an uns
+              geglaubt und mitgeholfen haben. Vielen Dank an alle – wir halten euch auf dem
+              Laufenden! 🎉
             </p>
           </div>
         </div>
@@ -1259,7 +1286,7 @@
               Als Nächstes stehen die <strong>Eintragung ins Genossenschaftsregister</strong>
               und der Start unserer <strong>Crowdfunding-Kampagne</strong> über die Plattform
               der Leipziger Gruppe an – jeder Euro zählt. Unser Ziel:
-              <strong>Neustart am 01.10.2026</strong>. Macht mit, die Chance ist da – dieses
+              <strong>Neustart am 01.12.2026</strong>. Macht mit, die Chance ist da – dieses
               Studio gehört seinen Mitgliedern und Sportlern und ist ein toller Beitrag für ein
               lebendiges Schönefeld. 💪
             </p>
@@ -1414,7 +1441,7 @@
             <li class="done">Genossenschaft gegründet – 05.08.2026 ✓</li>
             <li>Eintragung ins Genossenschaftsregister & Pachtvertrag unterzeichnen</li>
             <li>Crowdfunding-Kampagne starten, um die Anlaufphase zu finanzieren</li>
-            <li>Sportbetrieb wieder aufnehmen – Ziel: 01.10.2026</li>
+            <li>Sportbetrieb wieder aufnehmen – Ziel: 01.12.2026</li>
             <li>Schritt für Schritt sanieren und das Kursangebot ausbauen</li>
           </ol>
         </div>
@@ -1780,7 +1807,7 @@
           <div class="oz-notice">
             <strong>Aktuell vorübergehend geschlossen</strong>
             Die Genossenschaft ist gegründet, der Pachtvertrag steht – unser Ziel ist der
-            <strong>Neustart am 01.10.2026</strong>, wenn alles gut läuft. Alle Neuigkeiten
+            <strong>Neustart am 01.12.2026</strong>, wenn alles gut läuft. Alle Neuigkeiten
             werden direkt hier auf dieser Seite veröffentlicht.
           </div>
           <p style="font-size:0.95rem;">
