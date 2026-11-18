@@ -146,7 +146,7 @@
       gap: 0.5rem;
     }
     .nav-logo { display: flex; align-items: center; gap: 0.7rem; color: var(--walnut); font-size: 1rem; font-weight: 700; }
-    .nav-logo img { height: 38px; width: auto; }
+    .nav-logo img { height: 46px; width: auto; }
     .nav-logo-text { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600; color: var(--walnut); }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; flex-wrap: wrap; }
     .nav-links a { color: var(--walnut-soft); font-size: 0.92rem; font-weight: 600; }
@@ -315,6 +315,19 @@
     .news-card-poster { display: block; background: var(--cream-dk); }
     .news-card-poster img { width: 100%; height: auto; display: block; }
     @media (min-width: 640px) { .news-card.invite { grid-template-columns: 340px 1fr; } }
+    .news-card p + p { margin-top: 0.8rem; }
+    .news-card .news-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.2rem; }
+    .news-card .news-actions .btn { padding: 0.7rem 1.4rem; font-size: 0.9rem; }
+    .doc-links { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.25rem; }
+    .doc-link {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.8rem 1rem; border-radius: 10px;
+      background: rgba(255, 250, 242, 0.08); border: 1px solid rgba(248, 241, 230, 0.22);
+      color: var(--paper); font-weight: 700; font-size: 0.92rem; line-height: 1.35;
+    }
+    .doc-link:hover { background: rgba(255, 250, 242, 0.16); color: var(--paper); text-decoration: none; }
+    .doc-link small { display: block; font-weight: 600; color: rgba(248, 241, 230, 0.6); font-size: 0.8rem; }
+    .doc-link-icon { flex-shrink: 0; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; background: var(--terracotta); color: var(--paper); border-radius: 6px; padding: 0.35rem 0.45rem; }
     .news-card-body { padding: 1.75rem; display: flex; flex-direction: column; justify-content: center; }
     .news-date {
       font-size: 0.75rem;
@@ -1025,6 +1038,9 @@
     .modal-box p { color: var(--walnut-soft); font-size: 0.95rem; margin-bottom: 0.9rem; line-height: 1.6; }
     .modal-box strong { color: var(--walnut); font-weight: 700; }
     .modal-box a { color: var(--terracotta); }
+    .modal-box.wide { max-width: 680px; }
+    .modal-box h4 { font-family: 'Nunito', sans-serif; font-size: 0.98rem; font-weight: 800; color: var(--walnut); margin: 1.3rem 0 0.4rem; }
+    .modal-box ul { margin: 0 0 0.9rem 1.2rem; color: var(--walnut-soft); font-size: 0.95rem; line-height: 1.6; }
     .modal-close {
       position: absolute;
       top: 0.9rem;
@@ -1054,7 +1070,7 @@
     .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
     .footer-links a { color: rgba(248, 241, 230, 0.6); font-size: 0.85rem; font-weight: 600; }
     .footer-links a:hover { color: var(--terracotta-lt); text-decoration: none; }
-    .footer-logo img { height: 50px; width: auto; opacity: 0.9; }
+    .footer-logo img { height: 84px; width: auto; background: #fff; border-radius: 14px; padding: 6px; }
     .footer-text { color: rgba(248, 241, 230, 0.42); font-size: 0.85rem; }
     .footer-text.tag {
       font-family: 'Fraunces', serif;
@@ -1160,7 +1176,7 @@
     "name": "Sportstudio Schönefeld",
     "description": "Sportstudio in Leipzig-Schönefeld, seit 1994. Wir gründen eine Genossenschaft, um das Studio gemeinsam weiterzuführen und wieder zu eröffnen.",
     "url": "https://sportstudioschoenefeld.de/",
-    "logo": "https://sportstudioschoenefeld.de/og-image.jpg",
+    "logo": "https://sportstudioschoenefeld.de/logo-eg.png",
     "image": "https://sportstudioschoenefeld.de/og-image.jpg",
     "email": "leostrasseLEschoenefeld@web.de",
     "foundingDate": "1994",
@@ -1184,7 +1200,7 @@
   <nav>
     <div class="nav-inner">
       <div class="nav-logo">
-        <img src="Sportstätte Schönefeld Logo.png" alt="Sportstudio Schönefeld Logo" />
+        <img src="logo-eg.png" alt="Logo der Sportstudio Schönefeld eG" />
         <span class="nav-logo-text">Sportstudio Schönefeld</span>
       </div>
       <ul class="nav-links">
@@ -1228,6 +1244,56 @@
       <h2>Neuigkeiten</h2>
       <hr class="divider" />
       <div class="news-grid">
+        <div class="news-card">
+          <img src="wiedereroeffnung-01-11.jpg" alt="Trainingsbereich des Sportstudios Schönefeld" class="news-card-img" />
+          <div class="news-card-body">
+            <div class="news-date">18.11.2026</div>
+            <h3>Gründung gefeiert – neuer Starttermin: 01.01.2027</h3>
+            <p>
+              Am 30.10.2026 haben wir unsere Genossenschaft in der Leostraße 4 ganz offiziell
+              gegründet und die <strong>Satzung beschlossen</strong> – danke an alle, die dabei
+              waren! Seitdem sind schon rund <strong>15.000 €</strong> von den Mitgliedern der
+              Genossenschaft zusammengekommen, und wir konnten einen Sponsor sowie weitere
+              Unterstützer gewinnen.
+            </p>
+            <p>
+              Gerade prüft uns der Genossenschaftsverband, danach folgt die Eintragung ins
+              Genossenschaftsregister. Erst dann können wir den fertig ausverhandelten
+              <strong>Pachtvertrag</strong> unterschreiben und die Filialleitung einstellen –
+              das dauert rund vier Wochen. Deshalb planen wir die Wiedereröffnung jetzt für den
+              <strong>01.01.2027</strong>. Bis jetzt läuft alles nach Plan! 💪
+            </p>
+            <div class="news-actions">
+              <a href="#mitglied-werden" class="btn btn-primary">Jetzt Mitglied werden</a>
+            </div>
+          </div>
+        </div>
+        <div class="news-card invite" id="stellenanzeige">
+          <a href="stellenanzeige-filialleitung.pdf" target="_blank" rel="noopener" class="news-card-poster" aria-label="Stellenanzeige als PDF öffnen">
+            <img src="stellenanzeige-filialleitung.jpg" alt="Stellenanzeige: Wir suchen die Filialleitung (m/w/d) für das Sportstudio Schönefeld" loading="lazy" />
+          </a>
+          <div class="news-card-body">
+            <div class="news-date">18.11.2026 · Bewerbung bis 30.11.2026</div>
+            <h3>Wir suchen die Filialleitung (m/w/d)</h3>
+            <p>
+              Für unser Sportstudio in der Leostraße 4 suchen wir ein <strong>Gesicht aus der
+              Nachbarschaft für die Nachbarschaft</strong>: erste Ansprechperson für Mitglieder
+              und Gäste, Organisation von Tresen, Dienstplan und Öffnungszeiten – gemeinsam mit
+              Vorstand, Ehrenamtlichen und Trainern. Eine Trainerlizenz brauchst du nicht.
+            </p>
+            <p>
+              <strong>Start ab 28.12.2026</strong> mit 20 Stunden pro Woche, befristet auf
+              12 Monate mit Aussicht auf Verlängerung und Festanstellung. Schick uns bis zum
+              <strong>30.11.2026</strong> formlos ein paar Zeilen zu dir und gern einen
+              Lebenslauf an
+              <a href="mailto:leostrasseLEschoenefeld@web.de?subject=Bewerbung%20Filialleitung">leostrasseLEschoenefeld@web.de</a>.
+              Ansprechperson ist Jens aus dem Vorstand.
+            </p>
+            <div class="news-actions">
+              <a href="stellenanzeige-filialleitung.pdf" target="_blank" rel="noopener" class="btn btn-primary">Stellenanzeige (PDF)</a>
+            </div>
+          </div>
+        </div>
         <div class="news-card invite">
           <a href="einladung-30-10-2026.jpg" target="_blank" rel="noopener" class="news-card-poster" aria-label="Einladung in voller Größe öffnen">
             <img src="einladung-30-10-2026.jpg" alt="Einladung zur Beitrittsveranstaltung zur Gründung der Sportstudio Schönefeld eG am Freitag, 30.10.2026, 18:00 Uhr" />
@@ -1252,21 +1318,6 @@
           </div>
         </div>
         <div class="news-card">
-          <img src="wiedereroeffnung-01-11.jpg" alt="Trainingsbereich des Sportstudios Schönefeld" class="news-card-img" />
-          <div class="news-card-body">
-            <div class="news-date">21.10.2026</div>
-            <h3>Neuer Starttermin: Wiedereröffnung voraussichtlich am 01.12.2026</h3>
-            <p>
-              Nach viel bürokratischem Aufwand haben wir unser Sportstudio zurückerobert! Bis
-              zum Start gibt es aber noch einiges zu tun – deshalb planen wir die
-              Wiedereröffnung jetzt voraussichtlich für den <strong>01.12.2026</strong>. Möglich
-              wird das nur dank der zahlreichen Unterstützerinnen und Unterstützer, die an uns
-              geglaubt und mitgeholfen haben. Vielen Dank an alle – wir halten euch auf dem
-              Laufenden! 🎉
-            </p>
-          </div>
-        </div>
-        <div class="news-card">
           <img src="genossenschaft-gruendung.jpg" alt="Der Vorstand der Genossenschaft Sportstudio Schönefeld bei der Gründung" class="news-card-img contain" />
           <div class="news-card-body">
             <div class="news-date">05.08.2026</div>
@@ -1286,7 +1337,7 @@
               Als Nächstes stehen die <strong>Eintragung ins Genossenschaftsregister</strong>
               und der Start unserer <strong>Crowdfunding-Kampagne</strong> über die Plattform
               der Leipziger Gruppe an – jeder Euro zählt. Unser Ziel:
-              <strong>Neustart am 01.12.2026</strong>. Macht mit, die Chance ist da – dieses
+              <strong>Neustart am 01.01.2027</strong>. Macht mit, die Chance ist da – dieses
               Studio gehört seinen Mitgliedern und Sportlern und ist ein toller Beitrag für ein
               lebendiges Schönefeld. 💪
             </p>
@@ -1439,9 +1490,10 @@
           </p>
           <ol class="geno-steps">
             <li class="done">Genossenschaft gegründet – 05.08.2026 ✓</li>
-            <li>Eintragung ins Genossenschaftsregister & Pachtvertrag unterzeichnen</li>
-            <li>Crowdfunding-Kampagne starten, um die Anlaufphase zu finanzieren</li>
-            <li>Sportbetrieb wieder aufnehmen – Ziel: 01.12.2026</li>
+            <li class="done">Offizielle Gründungsveranstaltung, Satzung beschlossen – 30.10.2026 ✓</li>
+            <li>Prüfung durch den Genossenschaftsverband & Eintragung ins Genossenschaftsregister</li>
+            <li>Pachtvertrag unterschreiben & Filialleitung einstellen</li>
+            <li>Sportbetrieb wieder aufnehmen – Ziel: 01.01.2027</li>
             <li>Schritt für Schritt sanieren und das Kursangebot ausbauen</li>
           </ol>
         </div>
@@ -1460,13 +1512,28 @@
             Monatsbeitrag und ohne Anteil. Die meisten Genossen-Vorteile gibt es dann
             aber nicht.
           </p>
-          <a href="#kontakt" class="btn btn-primary" style="display:flex; justify-content:center; margin-top:1.75rem;">Interesse bekunden</a>
+          <h3 id="mitglied-werden" style="margin-top:2rem; scroll-margin-top:6rem;">So wirst du Mitglied</h3>
+          <p style="margin-bottom:0;">
+            Satzung lesen, Beitrittserklärung ausfüllen und unterschreiben, dann den Betrag für
+            deine Anteile überweisen – die Kontodaten stehen in Teil 2 der Beitrittserklärung.
+            Fragen? <a href="#kontakt" style="color:var(--terracotta-lt);">Meldet euch einfach.</a>
+          </p>
+          <div class="doc-links">
+            <a href="satzung-sportstudio-schoenefeld-eg.pdf" target="_blank" rel="noopener" class="doc-link">
+              <span class="doc-link-icon">PDF</span>
+              <span>Satzung der Sportstudio Schönefeld eG<small>beschlossen am 30.10.2026</small></span>
+            </a>
+            <a href="beitrittserklaerung-sportstudio-schoenefeld-eg.pdf" target="_blank" rel="noopener" class="doc-link">
+              <span class="doc-link-icon">PDF</span>
+              <span>Beitrittserklärung mit Zahlungshinweis<small>zum Ausdrucken und Unterschreiben</small></span>
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="geno-tiers-head">
         <h3>Drei Stufen – du entscheidest</h3>
-        <p>So sieht das geplante Modell aus. Die genauen Konditionen beschließen die Mitglieder gemeinsam auf der Gründungsversammlung – das hier ist der aktuelle Stand.</p>
+        <p>Anteile und Stimmrechte sind in der Satzung vom 30.10.2026 festgelegt. Die Mitgliedervorteile regelt eine Nutzungs- und Gebührenordnung, die Vorstand und Aufsichtsrat noch beschließen – das hier ist der aktuelle Planungsstand.</p>
       </div>
       <div class="geno-tiers">
         <div class="tier-card featured">
@@ -1516,8 +1583,9 @@
         <details class="faq-item" open>
           <summary>Bekomme ich meinen Anteil wieder zurück?</summary>
           <p>
-            Ja. Wenn du kündigst, wird dir dein Anteil zurückgezahlt – frühestens
-            12, spätestens 24 Monate nach Feststellung des Jahresabschlusses. Ein
+            Ja. Du kannst zum Ende eines Geschäftsjahres mit drei Monaten Frist kündigen.
+            Dein Guthaben wird dir dann spätestens 24 Monate nach Feststellung des
+            Jahresabschlusses ausgezahlt (§§ 5 und 10 der Satzung). Ein
             bisschen wie ein Sparbuch, nur dass du in der Zwischenzeit mitbestimmst
             und die Vorteile genießt.
           </p>
@@ -1565,8 +1633,8 @@
       </div>
 
       <p class="geno-disclaimer">
-        Stand der Planung. Alle Konditionen, Preise und Vorteile werden mit der
-        Gründung der Genossenschaft verbindlich festgelegt und in der Satzung geregelt.
+        Verbindlich ist die Satzung vom 30.10.2026. Die genannten Mitgliedervorteile sind
+        Stand der Planung und werden in der Nutzungs- und Gebührenordnung festgelegt.
         Genossenschaftsanteile sind keine Geldanlage zur Rendite, sondern eine
         Beteiligung am gemeinsamen Studio.
       </p>
@@ -1806,8 +1874,8 @@
           <hr class="divider" />
           <div class="oz-notice">
             <strong>Aktuell vorübergehend geschlossen</strong>
-            Die Genossenschaft ist gegründet, der Pachtvertrag steht – unser Ziel ist der
-            <strong>Neustart am 01.12.2026</strong>, wenn alles gut läuft. Alle Neuigkeiten
+            Die Genossenschaft ist gegründet, der Pachtvertrag ist fertig ausverhandelt – unser
+            Ziel ist der <strong>Neustart am 01.01.2027</strong>. Alle Neuigkeiten
             werden direkt hier auf dieser Seite veröffentlicht.
           </div>
           <p style="font-size:0.95rem;">
@@ -1853,6 +1921,7 @@
       <p>
         Wir suchen außerdem: engagierte Mitstreiter, handwerklich Begabte
         und Menschen, die Lust haben, gemeinsam etwas Großartiges aufzubauen.
+        Und eine <a href="#stellenanzeige">Filialleitung (m/w/d)</a> – Bewerbung bis 30.11.2026.
       </p>
       <button id="copy-email-btn" onclick="copyEmail()" class="kontakt-email-text" title="Klicken zum Kopieren">leostrasseLEschoenefeld@web.de</button>
       <p class="kontakt-hint" id="copy-hint">Klicken zum Kopieren</p>
@@ -1862,20 +1931,164 @@
   </section>
 
   <div id="impressum-modal" class="modal-overlay" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-label="Impressum">
-      <button class="modal-close" onclick="closeImpressum()" aria-label="Schließen">&#x2715;</button>
+    <div class="modal-box wide" role="dialog" aria-modal="true" aria-label="Impressum">
+      <button class="modal-close" onclick="closeModal('impressum-modal')" aria-label="Schließen">&#x2715;</button>
       <h3>Impressum</h3>
-      <p><strong>Sportstudio Schönefeld</strong> – Genossenschaft in Gründung</p>
-      <p><strong>Initiator des Projekts:</strong><br />Jens Kurzentat<br />Leostraße 4<br />04347 Leipzig</p>
+      <h4>Angaben gemäß § 5 DDG</h4>
+      <p>Sportstudio Schönefeld eG (i. G.)<br />Leostraße 4<br />04347 Leipzig</p>
+      <h4>Vertreten durch den Vorstand</h4>
+      <p>Jens Kurszentat, Roman Adam</p>
+      <h4>Vorsitzender des Aufsichtsrats</h4>
+      <p>Bernd Schumann</p>
+      <h4>Kontakt</h4>
+      <p>E-Mail: <a href="mailto:leostrasseLEschoenefeld@web.de">leostrasseLEschoenefeld@web.de</a></p>
+      <h4>Registereintrag</h4>
       <p>
-        <strong>Kontakt:</strong><br />
+        Die Genossenschaft befindet sich in Gründung. Die Eintragung in das
+        Genossenschaftsregister beim Amtsgericht Leipzig steht noch aus. Nach der Eintragung
+        ergänzen wir hier Registergericht und Registernummer.
+      </p>
+      <h4>Zuständiger Prüfungsverband</h4>
+      <p>GVTS-Genossenschaftsverband Thüringen-Sachsen e. V., Sandweg 39, 09114 Chemnitz</p>
+      <h4>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h4>
+      <p>Jens Kurszentat, Leostraße 4, 04347 Leipzig</p>
+      <h4>Verbraucherstreitbeilegung</h4>
+      <p>
+        Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+        Verbraucherschlichtungsstelle teilzunehmen.
+      </p>
+      <h4>Haftung für Inhalte und Links</h4>
+      <p>
+        Wir erstellen die Inhalte dieser Website mit größter Sorgfalt, können aber für die
+        Richtigkeit, Vollständigkeit und Aktualität keine Gewähr übernehmen. Unsere Website
+        enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.
+        Für diese Inhalte ist stets der jeweilige Anbieter verantwortlich. Bei Bekanntwerden von
+        Rechtsverletzungen entfernen wir solche Links umgehend.
+      </p>
+      <h4>Urheberrecht</h4>
+      <p>
+        Die durch uns erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen
+        Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Eine Vervielfältigung oder
+        Verwendung bedarf unserer schriftlichen Zustimmung.
+      </p>
+    </div>
+  </div>
+
+  <div id="datenschutz-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-box wide" role="dialog" aria-modal="true" aria-label="Datenschutzerklärung">
+      <button class="modal-close" onclick="closeModal('datenschutz-modal')" aria-label="Schließen">&#x2715;</button>
+      <h3>Datenschutzerklärung</h3>
+      <h4>1. Verantwortlicher</h4>
+      <p>
+        Sportstudio Schönefeld eG (i. G.), Leostraße 4, 04347 Leipzig<br />
+        Vertreten durch den Vorstand: Jens Kurszentat, Roman Adam<br />
         E-Mail: <a href="mailto:leostrasseLEschoenefeld@web.de">leostrasseLEschoenefeld@web.de</a>
       </p>
-      <p class="impressum-note">
-        Das Sportstudio wird derzeit als eingetragene Genossenschaft (eG) gegründet.
-        Sobald die Eintragung ins Genossenschaftsregister erfolgt ist, wird dieses
-        Impressum um die Angaben der Genossenschaft (Vorstand, Registergericht und
-        Registernummer) ergänzt.
+      <p>
+        Einen Datenschutzbeauftragten haben wir nicht benannt, weil wir dazu nicht verpflichtet
+        sind. Bei Fragen zum Datenschutz erreichen Sie uns unter der oben genannten E-Mail-Adresse.
+      </p>
+      <h4>2. Allgemeines zur Datenverarbeitung</h4>
+      <p>
+        Wir verarbeiten personenbezogene Daten nur, soweit das zur Bereitstellung dieser Website,
+        zur Beantwortung von Anfragen, zur Durchführung des Bewerbungsverfahrens und zur
+        Verwaltung der Mitgliedschaft in der Genossenschaft erforderlich ist. Rechtsgrundlagen
+        sind Art. 6 Abs. 1 DSGVO, im Bewerbungsverfahren zusätzlich § 26 BDSG.
+      </p>
+      <h4>3. Hosting und Server-Logfiles</h4>
+      <p>
+        Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub Inc., 88 Colin P.
+        Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf werden technisch notwendige
+        Daten automatisch erfasst und in Logfiles gespeichert: IP-Adresse, Datum und Uhrzeit,
+        aufgerufene Seite, übertragene Datenmenge, Browsertyp und Betriebssystem sowie die zuvor
+        besuchte Seite.
+      </p>
+      <p>
+        Zweck ist der sichere und stabile Betrieb der Website. Rechtsgrundlage ist Art. 6 Abs. 1
+        lit. f DSGVO (berechtigtes Interesse am sicheren Betrieb). Dabei können Daten in die USA
+        übermittelt werden. GitHub ist nach dem EU-US Data Privacy Framework zertifiziert, für
+        das ein Angemessenheitsbeschluss der EU-Kommission besteht. Wie lange GitHub die
+        Logfiles speichert, legt GitHub fest; Einzelheiten stehen in der Datenschutzerklärung
+        von GitHub.
+      </p>
+      <h4>4. Cookies, Schriftarten und eingebundene Inhalte</h4>
+      <p>
+        Diese Website setzt keine Cookies und keine Analyse- oder Tracking-Dienste ein. Bilder
+        und Videos werden direkt von unserem Webspace geladen. Karten und soziale Netzwerke sind
+        nicht eingebunden.
+      </p>
+      <p>
+        Für eine einheitliche Darstellung nutzen wir Schriftarten von Google Fonts (Google
+        Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Beim Aufruf der Seite
+        lädt Ihr Browser die Schriftarten von Servern von Google; dabei wird Ihre IP-Adresse an
+        Google übermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes
+        Interesse an einer einheitlichen und ansprechenden Darstellung).
+      </p>
+      <h4>5. Kontaktaufnahme per E-Mail</h4>
+      <p>
+        Wenn Sie uns per E-Mail schreiben, speichern wir Ihre Angaben (E-Mail-Adresse, Name,
+        Inhalt der Nachricht), um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1
+        lit. b DSGVO, wenn Ihre Anfrage mit einer Mitgliedschaft oder einem Vertrag zusammenhängt,
+        sonst Art. 6 Abs. 1 lit. f DSGVO. Wir löschen die Daten, sobald die Anfrage erledigt ist
+        und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+      </p>
+      <p>
+        Bitte beachten Sie: Eine unverschlüsselte E-Mail kann auf dem Übertragungsweg von
+        Dritten mitgelesen werden.
+      </p>
+      <h4>6. Mitgliedschaft und Beitritt zur Genossenschaft</h4>
+      <p>
+        Für die Mitgliedschaft verarbeiten wir die Angaben aus der Beitrittserklärung,
+        insbesondere Name, Anschrift, Geburtsdatum, Kontaktdaten, Zahl der Geschäftsanteile und
+        Zahlungsdaten. Rechtsgrundlagen sind Art. 6 Abs. 1 lit. b DSGVO (Mitgliedschaftsverhältnis)
+        und lit. c DSGVO in Verbindung mit dem Genossenschaftsgesetz, zum Beispiel für die
+        Mitgliederliste und die Prüfung durch den Genossenschaftsverband.
+      </p>
+      <p>
+        Die Daten können an den Prüfungsverband (GVTS-Genossenschaftsverband Thüringen-Sachsen
+        e. V.), das Registergericht, die Bank und die mit der Buchhaltung betraute Person
+        weitergegeben werden, soweit das erforderlich ist. Wir speichern sie für die Dauer der
+        Mitgliedschaft und danach, solange gesetzliche Aufbewahrungsfristen bestehen.
+      </p>
+      <h4>7. Bewerbungen</h4>
+      <p>
+        Wenn Sie sich auf eine Stelle bewerben, verarbeiten wir Ihre Bewerbungsunterlagen (zum
+        Beispiel Anschreiben, Lebenslauf, Zeugnisse, Kontaktdaten) ausschließlich für das
+        Bewerbungsverfahren. Rechtsgrundlage ist § 26 BDSG und Art. 6 Abs. 1 lit. b DSGVO. Die
+        Unterlagen sehen nur die am Verfahren beteiligten Mitglieder des Vorstands.
+      </p>
+      <p>
+        Nach Abschluss des Verfahrens löschen wir die Unterlagen nach spätestens sechs Monaten,
+        es sei denn, Sie willigen in eine längere Speicherung ein oder es kommt zu einer
+        Anstellung. Im Fall der Anstellung werden die Unterlagen Teil der Personalakte.
+      </p>
+      <h4>8. Externe Links</h4>
+      <p>
+        Auf dieser Website verlinken wir auf Angebote Dritter, zum Beispiel auf Google Maps.
+        Beim Anklicken eines Links verlassen Sie diese Website, und es gelten die
+        Datenschutzerklärungen der jeweiligen Anbieter. Wir haben darauf keinen Einfluss.
+      </p>
+      <h4>9. Ihre Rechte</h4>
+      <p>Sie haben gegenüber uns folgende Rechte in Bezug auf Ihre personenbezogenen Daten:</p>
+      <ul>
+        <li>Auskunft (Art. 15 DSGVO)</li>
+        <li>Berichtigung (Art. 16 DSGVO)</li>
+        <li>Löschung (Art. 17 DSGVO)</li>
+        <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Widerspruch gegen Verarbeitungen auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (Art. 21 DSGVO)</li>
+        <li>Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
+      </ul>
+      <p>Wenden Sie sich dazu bitte an die oben genannte E-Mail-Adresse.</p>
+      <h4>10. Beschwerderecht</h4>
+      <p>
+        Sie können sich bei einer Datenschutz-Aufsichtsbehörde beschweren. Für uns zuständig ist
+        die Sächsische Datenschutz- und Transparenzbeauftragte (datenschutz.sachsen.de).
+      </p>
+      <h4>11. Aktualität</h4>
+      <p>
+        Wir passen diese Erklärung an, wenn sich unsere Website, unsere Angebote oder die
+        Rechtslage ändern. Es gilt die jeweils veröffentlichte Fassung. Stand: 18.11.2026.
       </p>
     </div>
   </div>
@@ -1883,11 +2096,12 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="Sportstätte Schönefeld Logo.png" alt="Sportstudio Schönefeld" />
+        <img src="logo-eg.png" alt="Sportstudio Schönefeld eG" />
       </div>
-      <p class="footer-text">Sportstudio Schönefeld · Leostraße 4 · 04347 Leipzig · leostrasseLEschoenefeld@web.de</p>
+      <p class="footer-text">Sportstudio Schönefeld eG (i. G.) · Leostraße 4 · 04347 Leipzig · leostrasseLEschoenefeld@web.de</p>
       <div class="footer-links">
-        <a href="#" onclick="openImpressum(); return false;">Impressum</a>
+        <a href="#" onclick="openModal('impressum-modal'); return false;">Impressum</a>
+        <a href="#" onclick="openModal('datenschutz-modal'); return false;">Datenschutz</a>
       </div>
       <p class="footer-text tag">Sport frei!</p>
     </div>
@@ -2002,25 +2216,27 @@
       });
     })();
 
-    function openImpressum() {
-      var m = document.getElementById('impressum-modal');
+    function openModal(id) {
+      var m = document.getElementById(id);
       m.classList.add('open');
       m.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
-    function closeImpressum() {
-      var m = document.getElementById('impressum-modal');
+    function closeModal(id) {
+      var m = document.getElementById(id);
       m.classList.remove('open');
       m.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
-    (function initImpressumModal() {
-      var m = document.getElementById('impressum-modal');
-      if (!m) return;
-      // Klick auf den Hintergrund schließt; Klick auf die Box nicht
-      m.addEventListener('click', function(e) { if (e.target === m) closeImpressum(); });
+    (function initModals() {
+      var modals = document.querySelectorAll('.modal-overlay');
+      modals.forEach(function(m) {
+        // Klick auf den Hintergrund schließt; Klick auf die Box nicht
+        m.addEventListener('click', function(e) { if (e.target === m) closeModal(m.id); });
+      });
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && m.classList.contains('open')) closeImpressum();
+        if (e.key !== 'Escape') return;
+        modals.forEach(function(m) { if (m.classList.contains('open')) closeModal(m.id); });
       });
     })();
 
